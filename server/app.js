@@ -8,40 +8,20 @@ module.exports = app;
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: [
+      // ... other directives ...
+      scriptSrc: [
         "'self'",
         "'unsafe-inline'",
-        "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css",
-        "https://images.unsplash.com",
-        "https://fonts.googleapis.com",
-      ],
+        "'unsafe-eval'",
+        // ... other script sources ...
+        "https://js.stripe.com/v3", // Add this line
 
-      imgSrc: [
-        "'self'",
-        "data:",
-        "https://www.google-analytics.com",
-        "https://images.unsplash.com",
-        "https://ca.slack-edge.com/",
+        // ... other script sources ...
       ],
-      fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+      // ... other directives ...
     },
-    scriptSrc: [
-      "'self'",
-      "'unsafe-inline'",
-      "'unsafe-eval'",
-      "https://cdnjs.cloudflare.com",
-      "https://code.jquery.com",
-      "https://maxcdn.bootstrapcdn.com",
-      "https://www.google-analytics.com",
-      "https://www.googletagmanager.com",
-      "https://www.google.com",
-      "https://www.gstatic.com",
-      "https://js.stripe.com",7
-    ],
   })
 );
-
 // logging middleware
 app.use(morgan("dev"));
 
