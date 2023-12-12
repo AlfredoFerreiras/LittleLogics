@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Figure from "react-bootstrap/Figure";
 
 const GameSquare = ({ to, title }) => {
   return (
