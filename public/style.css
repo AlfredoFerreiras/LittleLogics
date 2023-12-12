@@ -1,57 +1,289 @@
-/* src/index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Additional custom styles */
-/* Home container */
-.home {
-  background-color: #f5f5f5;
-  padding: 25px 15px;
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Greeting text */
-.greeting {
-  color: #0B72E8;
-  margin-bottom: 35px;
+/* Overriding background image for all anchor tags in the sidebar */
+.sidebar a,
+.sidebar a::before,
+.sidebar a::after,
+.profile-link,
+.profile-link::before,
+.profile-link::after,
+.settings-link,
+.settings-link::before,
+.settings-link::after {
+  background: none !important;
+  background-image: none !important;
 }
 
-/* Game options container */
-.games {
+.sidebar a *,
+.sidebar a *::before,
+.sidebar a *::after {
+  background: none !important;
+  background-image: none !important;
+}
+
+
+/* Remove background image underlines from all sidebar links */
+/* Ensure no background image for links in the sidebar */
+.sidebar ul li a {
+  background-image: none !important;
+}
+
+/* If the background is coming from a pseudo-element */
+.sidebar ul li a::before,
+.sidebar ul li a::after {
+  content: none !important;
+}
+
+/* Remove background image underlines from profile links */
+/* Ensure no background image for links in the profile section */
+.profile-section a {
+  background-image: none !important;
+}
+
+/* If the background is coming from a pseudo-element */
+.profile-section a::before,
+.profile-section a::after {
+  content: none !important;
+}
+
+
+
+.profile-link,
+.settings-link,
+.logout-button {
+  text-decoration: none;
+  /* Other styles... */
+}
+
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #edf2f7;
+  /* Light gray background */
+}
+
+/* Layout */
+#app {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 100%;
+  height: 100vh;
 }
 
-/* Game link styles */
-.game {
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  /* White background for sidebar */
+  padding: 20px;
+  border-right: 1px solid #e1e1e1;
+}
 
-  border: 2px solid #0B72E8;
-  margin: 20px;
+.sidebar h1 {
+  font-size: 24px;
+  color: #333;
+  /* Dark text for contrast */
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  /* Dark text for links */
+  font-weight: bold;
+  display: block;
+  /* Make link fill the li for easier clicking */
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  color: #007bff;
+  /* Blue color for hover and active state */
+  background-color: #f0f4f8;
+  /* Light background for hover and active state */
+}
+
+/* Content styles */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  /* More padding for content area */
+  background-color: #edf2f7;
+  /* Light gray background to match body */
+}
+
+.content h2 {
+  font-size: 28px;
+  color: #333;
+  /* Dark text for headings */
+  margin-bottom: 20px;
+}
+
+/* Card styles */
+.card {
+  background-color: #fff;
+  /* White background for cards */
+  padding: 20px;
+  border-radius: 8px;
+  /* Rounded corners for cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  margin-bottom: 20px;
   text-align: center;
+  /* Center text in cards */
+  transition: transform 0.2s;
+  /* Smooth transform on hover */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  /* Slight lift effect on hover */
+}
+
+/* Form styles */
+.auth-form {
+  max-width: 400px;
+  /* Max width for form */
+  margin: 20px auto;
+  /* Center form on the page */
+}
+
+.auth-form form {
+  background: #fff;
+  /* White background for form */
+  padding: 20px;
+  border-radius: 8px;
+  /* Rounded corners for form */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  /* Light border for inputs */
+  border-radius: 4px;
+  /* Slightly rounded borders for inputs */
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  /* Blue background for buttons */
+  color: white;
+  /* White text for buttons */
+  border: none;
+  border-radius: 4px;
+  /* Slightly rounded borders for buttons */
   cursor: pointer;
 }
 
-/* Game title text */
-.title {
+.auth-form button:hover {
+  background-color: #0056b3;
+  /* Darker blue on hover for button */
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Create columns that match the sidebar width */
+  gap: 20px;
+  /* Spacing between squares */
+  padding: 20px;
+  /* Padding around the grid */
+}
+
+
+.profile-section {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 40px);
+  /* Adjust width considering padding */
+  padding: 20px;
+  border-top: 1px solid #e1e1e1;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name,
+.settings-link,
+.logout-button {
+  display: block;
   color: #333;
-  /* Darker shade for improved contrast */
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 20px;
+  text-decoration: none;
+  margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 768px) {
-  .games {
-    width: 100%;
+.settings-link:hover,
+.logout-button:hover {
+  color: #007bff;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100px;
+    /* Smaller sidebar on mobile */
   }
-}
 
-/* Hover state */
-.game:hover {
-  background-color: #cdeafd;
+  .sidebar h1 {
+    font-size: 18px;
+    /* Smaller logo font on mobile */
+  }
+
+  .sidebar ul li a {
+    font-size: 14px;
+    /* Smaller link font on mobile */
+  }
+
+  .content {
+    padding: 20px;
+    /* Less padding in content area on mobile */
+  }
+
+  .content h2 {
+    font-size: 22px;
+    /* Smaller heading font on mobile */
+  }
+
+  .auth-form {
+    padding: 10px;
+    /* Less padding in form on mobile */
+  }
 }

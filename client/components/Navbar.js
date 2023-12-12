@@ -1,47 +1,52 @@
 import React from "react";
+import { NavLink } from "react-router-dom"; // Import NavLink instead of Link
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <h1>FS-App-Template</h1>
+  <div className="sidebar">
+    <div className="logo">
+      <h1>LittleLogics</h1>
+    </div>
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
+      <ul>
+        <li>
+          <NavLink to="/home" activeClassName="active">
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/numbers" activeClassName="active">
+            Numbers
+          </NavLink>
+        </li>
+        {/* Repeat for other links */}
+      </ul>
     </nav>
-    <hr />
+    {isLoggedIn && (
+      <div className="profile-section">
+        <NavLink to="/profile" className="profile-link">
+          Profile
+        </NavLink>
+        <NavLink to="/settings" className="settings-link">
+          Settings
+        </NavLink>
+        <button onClick={handleClick} className="logout-button">
+          Logout
+        </button>
+      </div>
+    )}
   </div>
 );
 
-/**
- * CONTAINER
- */
-const mapState = (state) => {
-  return {
-    isLoggedIn: !!state.auth.id,
-  };
-};
+const mapStateToProps = (state) => ({
+  isLoggedIn: !!state.auth.id,
+});
 
-const mapDispatch = (dispatch) => {
-  return {
-    handleClick() {
-      dispatch(logout());
-    },
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleClick() {
+    dispatch(logout());
+  },
+});
 
-export default connect(mapState, mapDispatch)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
