@@ -9,13 +9,9 @@ export const Home = ({ username }) => {
       <Navbar />
       <div className="content">
         <div className="games">
-          <GameSquare to="/numbers" title="Learn Numbers" />
-          <GameSquare to="/colors" title="Learn Colors" />
-          <GameSquare to="/shapes" title="Learn Shapes" />
-          <GameSquare to="/addition" title="Addition" />
-          <GameSquare to="/subtraction" title="Subtraction" />
-          <GameSquare to="/multiplication" title="Multiplication" />
-          <GameSquare to="/division" title="Division" />
+          <GameSquare to="/numbers" title="Math" />
+          <GameSquare to="/colors" title="Science" />
+          <GameSquare to="/shapes" title="Vocabulary" />
         </div>
       </div>
     </div>
