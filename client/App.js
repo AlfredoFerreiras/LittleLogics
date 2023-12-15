@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <Routes />
-      <PhaserGame />
+      {/* <PhaserGame /> */}
     </div>
   );
 };
