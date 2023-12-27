@@ -1,10 +1,12 @@
 import axios from "axios";
-7;
+
 // Action Types
 const GET_MATH_PROBLEMS = "GET_MATH_PROBLEMS";
 const ADD_MATH_PROBLEM = "ADD_MATH_PROBLEM";
 const UPDATE_MATH_PROBLEM = "UPDATE_MATH_PROBLEM";
 const DELETE_MATH_PROBLEM = "DELETE_MATH_PROBLEM";
+
+const TOKEN = "token";
 
 // Action Creators
 const getMathProblems = (mathProblems) => ({
@@ -16,13 +18,17 @@ const updateMathProblem = (problem) => ({ type: UPDATE_MATH_PROBLEM, problem });
 const deleteMathProblem = (id) => ({ type: DELETE_MATH_PROBLEM, id });
 
 // Thunk Creators
-export const fetchMathProblems = () => async (dispatch) => {
-  try {
-    const res = await axios.get("/api/math");
-    dispatch(getMathProblems(res.data));
-  } catch (err) {
-    console.error(err);
-  }
+export const fetchMathProblems = () => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem(TOKEN);
+    const res = await axios.get("/api/math", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const mathProblems = res.data;
+    dispatch(getMathProblems(mathProblems));
+  };
 };
 
 export const postMathProblem = (problem) => async (dispatch) => {
@@ -52,9 +58,7 @@ export const destroyMathProblem = (id) => async (dispatch) => {
   }
 };
 
-// Similar thunks for ADD, UPDATE, DELETE...
-
-// Math Reducer
+4;
 export default function mathReducer(state = [], action) {
   switch (action.type) {
     case GET_MATH_PROBLEMS:

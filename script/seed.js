@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Math, Science, Vocabulary },
+  models: { User, Math, Science, Vocabulary, Quiz },
 } = require("../server/db");
 
 /**
@@ -14,14 +14,25 @@ async function seed() {
   console.log("db synced!");
 
   // Creating Users
-  const users = await Promise.all([
+  const [cody, murphy, alfredo] = await Promise.all([
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
+    User.create({ username: "alfredo", password: "123" }),
   ]);
 
   const mathProblems = await Promise.all([
-    Math.create({ problem: "2 + 2", answer: 4, difficulty: "easy" }),
-    Math.create({ problem: "5 x 5", answer: 25, difficulty: "medium" }),
+    Math.create({
+      problem: "2 + 2",
+      answer: 4,
+      difficulty: "easy",
+      userId: cody.id,
+    }),
+    Math.create({
+      problem: "5 x 5",
+      answer: 25,
+      difficulty: "medium",
+      userId: alfredo.id,
+    }),
   ]);
 
   // Creating Science Questions
@@ -36,7 +47,6 @@ async function seed() {
       answer: "Mars",
       difficulty: "medium",
     }),
-    // More science questions...
   ]);
 
   // Creating Vocabulary Words
@@ -53,12 +63,13 @@ async function seed() {
     }),
     // More vocabulary words...
   ]);
-  console.log(`seeded ${users.length} users`);
+
   console.log(`seeded successfully`);
   return {
     users: {
-      cody: users[0],
-      murphy: users[1],
+      cody,
+      murphy,
+      alfredo,
     },
     mathProblems: {
       math1: mathProblems[0],

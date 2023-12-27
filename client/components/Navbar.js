@@ -15,11 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/numbers" activeClassName="active">
-            Numbers
-          </NavLink>
-        </li>
+
         {/* Repeat for other links */}
       </ul>
     </nav>

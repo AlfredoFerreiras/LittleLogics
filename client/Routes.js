@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import Math from "./components/Math";
-
+import Math from "./components/Math/index";
+import ScienceIndex from "./components/Science/Science";
+import VocabularyIndex from "./components/Vocabulary/Vocabulary";
 import { me } from "./store";
 
 /**
@@ -22,6 +23,8 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            <Route path="/vocabulary" component={VocabularyIndex} />
+            <Route path="/science" component={ScienceIndex} />
             <Route path="/math" component={Math} />
             <Route path="/home" component={Home} />
             <Redirect to="/home" />

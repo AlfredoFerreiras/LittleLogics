@@ -1,289 +1,176 @@
-/* Reset and base styles */
+/* Reset & Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Overriding background image for all anchor tags in the sidebar */
-.sidebar a,
-.sidebar a::before,
-.sidebar a::after,
-.profile-link,
-.profile-link::before,
-.profile-link::after,
-.settings-link,
-.settings-link::before,
-.settings-link::after {
-  background: none !important;
-  background-image: none !important;
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  /* Default text color set to dark grey to soften the contrast */
+  background-color: #ffffff;
+  /* Background set to white */
 }
 
-.sidebar a *,
-.sidebar a *::before,
-.sidebar a *::after {
-  background: none !important;
-  background-image: none !important;
-}
-
-
-/* Remove background image underlines from all sidebar links */
-/* Ensure no background image for links in the sidebar */
-.sidebar ul li a {
-  background-image: none !important;
-}
-
-/* If the background is coming from a pseudo-element */
-.sidebar ul li a::before,
-.sidebar ul li a::after {
-  content: none !important;
-}
-
-/* Remove background image underlines from profile links */
-/* Ensure no background image for links in the profile section */
-.profile-section a {
-  background-image: none !important;
-}
-
-/* If the background is coming from a pseudo-element */
-.profile-section a::before,
-.profile-section a::after {
-  content: none !important;
-}
-
-
-
-.profile-link,
-.settings-link,
-.logout-button {
+a {
+  color: #000;
+  /* Links are now black */
   text-decoration: none;
-  /* Other styles... */
 }
 
-
-body,
-html {
-  width: 100%;
-  height: 100%;
-  font-family: 'Arial', sans-serif;
-  background-color: #edf2f7;
-  /* Light gray background */
-}
-
-/* Layout */
-#app {
-  display: flex;
-  height: 100vh;
-}
-
-/* Sidebar styles */
-.sidebar {
-  width: 250px;
-  background-color: #fff;
-  /* White background for sidebar */
-  padding: 20px;
-  border-right: 1px solid #e1e1e1;
-}
-
-.sidebar h1 {
-  font-size: 24px;
-  color: #333;
-  /* Dark text for contrast */
-  margin-bottom: 30px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li {
-  padding: 10px 0;
-  border-bottom: 1px solid #e1e1e1;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #333;
-  /* Dark text for links */
-  font-weight: bold;
-  display: block;
-  /* Make link fill the li for easier clicking */
-}
-
-.sidebar ul li a:hover,
-.sidebar ul li a.active {
-  color: #007bff;
-  /* Blue color for hover and active state */
-  background-color: #f0f4f8;
-  /* Light background for hover and active state */
-}
-
-/* Content styles */
-.content {
-  flex-grow: 1;
-  padding: 40px;
-  /* More padding for content area */
-  background-color: #edf2f7;
-  /* Light gray background to match body */
-}
-
-.content h2 {
-  font-size: 28px;
-  color: #333;
-  /* Dark text for headings */
-  margin-bottom: 20px;
-}
-
-/* Card styles */
-.card {
-  background-color: #fff;
-  /* White background for cards */
-  padding: 20px;
-  border-radius: 8px;
-  /* Rounded corners for cards */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
-  margin-bottom: 20px;
+/* Header and Footer */
+.header,
+.footer {
+  background-color: #ff4500;
+  /* Red */
+  color: #fff;
+  /* White text */
   text-align: center;
-  /* Center text in cards */
-  transition: transform 0.2s;
-  /* Smooth transform on hover */
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  /* Slight lift effect on hover */
-}
-
-/* Form styles */
-.auth-form {
-  max-width: 400px;
-  /* Max width for form */
-  margin: 20px auto;
-  /* Center form on the page */
-}
-
-.auth-form form {
-  background: #fff;
-  /* White background for form */
-  padding: 20px;
-  border-radius: 8px;
-  /* Rounded corners for form */
+  padding: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
 }
 
-.auth-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  /* Light border for inputs */
-  border-radius: 4px;
-  /* Slightly rounded borders for inputs */
-}
-
-.auth-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  /* Blue background for buttons */
-  color: white;
-  /* White text for buttons */
-  border: none;
-  border-radius: 4px;
-  /* Slightly rounded borders for buttons */
-  cursor: pointer;
-}
-
-.auth-form button:hover {
-  background-color: #0056b3;
-  /* Darker blue on hover for button */
-}
-
-.games {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  /* Create columns that match the sidebar width */
-  gap: 20px;
-  /* Spacing between squares */
-  padding: 20px;
-  /* Padding around the grid */
-}
-
-
-.profile-section {
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 40px);
-  /* Adjust width considering padding */
-  padding: 20px;
-  border-top: 1px solid #e1e1e1;
-}
-
-.profile-link {
+/* Header */
+.header .container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 0 20px;
 }
 
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+.logo {
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.profile-name,
-.settings-link,
-.logout-button {
-  display: block;
-  color: #333;
-  text-decoration: none;
-  margin-bottom: 10px;
+.nav {
+  list-style-type: none;
 }
 
-.settings-link:hover,
-.logout-button:hover {
-  color: #007bff;
+.nav li {
+  display: inline;
+  margin-left: 20px;
 }
 
-.logout-button {
-  background: none;
-  border: none;
+/* Hero Section */
+.hero {
+  background: url('playful-bg.jpg') no-repeat center center/cover;
+  color: #fff;
+  /* White text */
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-align: center;
   cursor: pointer;
+  background-color: #ff4500;
+  /* Red */
+  color: #fff;
+  /* White text */
+  transition: background-color 0.3s ease;
 }
 
+.btn:hover {
+  background-color: #ffd700;
+  /* Yellow */
+}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100px;
-    /* Smaller sidebar on mobile */
-  }
+/* MathIndex and MathComponent */
+.math-index,
+.math-component {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  /* White background */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
 
-  .sidebar h1 {
-    font-size: 18px;
-    /* Smaller logo font on mobile */
-  }
+h1,
+.component-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
+  /* Titles are now black */
+}
 
-  .sidebar ul li a {
-    font-size: 14px;
-    /* Smaller link font on mobile */
-  }
+.category-list {
+  list-style-type: none;
+  /* Removes bullet points */
+  padding: 0;
+  /* Removes default padding */
+  text-align: left;
+  /* Aligns text to the left */
+}
 
-  .content {
-    padding: 20px;
-    /* Less padding in content area on mobile */
-  }
+.category-list li {
+  font-size: 16px;
+  color: #333;
+  padding: 8px 0;
+  align-items: center;
+  /* Adds padding for each list item */
+}
 
-  .content h2 {
-    font-size: 22px;
-    /* Smaller heading font on mobile */
-  }
+.category-list li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  /* Makes the link fill the entire list item for easier clicking */
+}
 
-  .auth-form {
-    padding: 10px;
-    /* Less padding in form on mobile */
-  }
+.category-list li a:hover {
+  text-decoration: underline;
+  color: #ffd700;
+  /* Yellow color on hover */
+}
+
+/* Specific Button and Feedback Styles */
+.submit-button,
+.feedback {
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submit-button {
+  background-color: #ff4500;
+  /* Red */
+  color: #fff;
+  /* White text */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.submit-button:hover {
+  background-color: #ffd700;
+  /* Yellow */
+}
+
+.feedback {
+  color: #ff4500;
+  /* Feedback text is red */
 }

@@ -8,20 +8,21 @@ module.exports = app;
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      // ... other directives ...
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https://covers.openlibrary.org"],
+      connectSrc: ["'self'", "https://openlibrary.org"], // Add this line
       scriptSrc: [
         "'self'",
         "'unsafe-inline'",
         "'unsafe-eval'",
-        // ... other script sources ...
-        "https://js.stripe.com/v3", // Add this line
-
-        // ... other script sources ...
+        "https://js.stripe.com/v3",
+        // ... other script sources
       ],
-      // ... other directives ...
+      // ... other directives
     },
   })
 );
+
 // logging middleware
 app.use(morgan("dev"));
 
