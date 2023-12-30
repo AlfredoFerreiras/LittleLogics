@@ -9,168 +9,150 @@ body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #333;
-  /* Default text color set to dark grey to soften the contrast */
   background-color: #ffffff;
-  /* Background set to white */
 }
 
 a {
   color: #000;
-  /* Links are now black */
   text-decoration: none;
 }
 
-/* Header and Footer */
-.header,
-.footer {
-  background-color: #ff4500;
-  /* Red */
-  color: #fff;
-  /* White text */
-  text-align: center;
-  padding: 10px 0;
+/* Navbar Styles */
+.navbar {
+  background-color: #f8f8f8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Header */
-.header .container {
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700;
+.navbar-logo-container {
+  flex-grow: 1;
 }
 
-.nav {
-  list-style-type: none;
+.navbar-logo {
+  font-size: 2em;
+  color: #5d5d5d;
+  font-weight: bold;
 }
 
-.nav li {
-  display: inline;
-  margin-left: 20px;
-}
-
-/* Hero Section */
-.hero {
-  background: url('playful-bg.jpg') no-repeat center center/cover;
-  color: #fff;
-  /* White text */
-  text-align: center;
-  padding: 100px 0;
-}
-
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 24px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  background-color: #ff4500;
-  /* Red */
-  color: #fff;
-  /* White text */
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #ffd700;
-  /* Yellow */
-}
-
-/* MathIndex and MathComponent */
-.math-index,
-.math-component {
-  text-align: center;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  /* White background */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-}
-
-h1,
-.component-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #000;
-  /* Titles are now black */
-}
-
-.category-list {
-  list-style-type: none;
-  /* Removes bullet points */
-  padding: 0;
-  /* Removes default padding */
-  text-align: left;
-  /* Aligns text to the left */
-}
-
-.category-list li {
-  font-size: 16px;
-  color: #333;
-  padding: 8px 0;
+.navbar-nav {
+  display: flex;
   align-items: center;
-  /* Adds padding for each list item */
 }
 
-.category-list li a {
-  text-decoration: none;
-  color: #000;
-  display: block;
-  /* Makes the link fill the entire list item for easier clicking */
-}
-
-.category-list li a:hover {
+.active-nav-link {
   text-decoration: underline;
-  color: #ffd700;
-  /* Yellow color on hover */
 }
 
-/* Specific Button and Feedback Styles */
-.submit-button,
-.feedback {
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+.nav-link {
+  margin: 0 10px;
+  padding: 5px 10px;
+  color: #5d5d5d;
+  font-weight: bold;
 }
 
-.submit-button {
+.nav-link:hover {
+  color: #ff4500;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  margin: 0 10px;
+}
+
+.dropbtn {
   background-color: #ff4500;
-  /* Red */
-  color: #fff;
-  /* White text */
+  color: white;
+  padding: 10px 15px;
   border: none;
+  cursor: pointer;
   border-radius: 5px;
+  font-weight: bold;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #5d5d5d;
+  padding: 12px 16px;
+  display: block;
+}
+
+.active-dropdown-item {
+  color: #ff4500;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+/* Actions Styles */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login-link,
+.join-button {
+  background-color: #5d5d5d;
+  color: white;
+  border-radius: 20px;
   padding: 10px 20px;
 }
 
-.submit-button:hover {
-  background-color: #ffd700;
-  /* Yellow */
+.join-button {
+  background-color: #6a5acd;
 }
 
-.feedback {
-  color: #ff4500;
-  /* Feedback text is red */
+.login-link:hover,
+.join-button:hover {
+  background-color: #ff4500;
+}
+
+.auth-form {
+  background-color: #f3f4f6;
+  /* light gray background */
+  align-items: center;
+
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.not-logged-in .navbar {
+  background-color: #e74c3c;
+  /* change color when not logged in */
+}
+
+.not-logged-in .nav-link,
+.not-logged-in .dropdown-content a {
+  color: #ecf0f1;
+  /* lighter text for better contrast */
+}
+
+.not-logged-in .dropbtn {
+  background-color: #c0392b;
+  /* darker button background */
 }

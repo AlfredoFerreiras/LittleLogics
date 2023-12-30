@@ -1,0 +1,39 @@
+.content-container {
+    display: flex;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.learning-content {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.math-categories {
+    width: 200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li {
+    margin-bottom: 10px;
+}
+
+.category-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.category-list a:hover {
+    text-decoration: underline;
+}

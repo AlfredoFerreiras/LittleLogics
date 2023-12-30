@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
+import ParticlesBg from "particles-bg";
 
-/**
- * COMPONENT
- */
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
     <div className="auth-form">
+      <ParticlesBg type="circle" bg={true} />
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">

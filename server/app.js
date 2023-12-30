@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
+const cors = require("cors");
 module.exports = app;
 
 app.use(
@@ -22,6 +23,8 @@ app.use(
     },
   })
 );
+
+app.use(cors());
 
 // logging middleware
 app.use(morgan("dev"));
