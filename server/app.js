@@ -11,7 +11,11 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       imgSrc: ["'self'", "data:", "https://covers.openlibrary.org"],
-      connectSrc: ["'self'", "https://openlibrary.org"], // Add this line
+      connectSrc: [
+        "'self'",
+        "https://openlibrary.org",
+        "https://api.openai.com/v1/chat/completions",
+      ], // Add this line
       scriptSrc: [
         "'self'",
         "'unsafe-inline'",

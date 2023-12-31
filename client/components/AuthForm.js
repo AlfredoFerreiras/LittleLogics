@@ -8,7 +8,7 @@ const AuthForm = (props) => {
 
   return (
     <div className="auth-form">
-      <ParticlesBg type="circle" bg={true} />
+      <ParticlesBg type="cobweb" bg={true} />
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">

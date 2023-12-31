@@ -17,6 +17,7 @@ const ScienceQuestion = ({ questions, topic }) => {
     setFeedback("");
   };
 
+  console.log("questions", questions.length);
   return (
     <div className="science-component">
       <h2>{`${topic} Questions`}</h2>

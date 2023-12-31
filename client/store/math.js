@@ -1,76 +1,61 @@
 import axios from "axios";
 
-// Action Types
-const GET_MATH_PROBLEMS = "GET_MATH_PROBLEMS";
-const ADD_MATH_PROBLEM = "ADD_MATH_PROBLEM";
-const UPDATE_MATH_PROBLEM = "UPDATE_MATH_PROBLEM";
-const DELETE_MATH_PROBLEM = "DELETE_MATH_PROBLEM";
+// ACTION TYPES
+const FETCH_MATH_PROMPT_REQUEST = "FETCH_MATH_PROMPT_REQUEST";
+const FETCH_MATH_PROMPT_SUCCESS = "FETCH_MATH_PROMPT_SUCCESS";
+const FETCH_MATH_PROMPT_FAILURE = "FETCH_MATH_PROMPT_FAILURE";
 
-const TOKEN = "token";
-
-// Action Creators
-const getMathProblems = (mathProblems) => ({
-  type: GET_MATH_PROBLEMS,
-  mathProblems,
+// ACTION CREATORS
+const fetchMathPromptRequest = () => ({ type: FETCH_MATH_PROMPT_REQUEST });
+const fetchMathPromptSuccess = (prompt, subcategory) => ({
+  type: FETCH_MATH_PROMPT_SUCCESS,
+  prompt,
+  subcategory,
 });
-const addMathProblem = (problem) => ({ type: ADD_MATH_PROBLEM, problem });
-const updateMathProblem = (problem) => ({ type: UPDATE_MATH_PROBLEM, problem });
-const deleteMathProblem = (id) => ({ type: DELETE_MATH_PROBLEM, id });
+const fetchMathPromptFailure = (error) => ({
+  type: FETCH_MATH_PROMPT_FAILURE,
+  error,
+});
 
-// Thunk Creators
-export const fetchMathProblems = () => {
-  return async (dispatch) => {
-    const token = window.localStorage.getItem(TOKEN);
-    const res = await axios.get("/api/math", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const mathProblems = res.data;
-    dispatch(getMathProblems(mathProblems));
-  };
-};
-
-export const postMathProblem = (problem) => async (dispatch) => {
+// THUNK CREATORS
+export const fetchMathPrompt = (subcategory) => async (dispatch) => {
+  dispatch(fetchMathPromptRequest());
+  console.log("Fetching math prompt for subcategory:", subcategory);
   try {
-    const res = await axios.post("/api/math", problem);
-    dispatch(addMathProblem(res.data));
-  } catch (err) {
-    console.error(err);
+    const res = await axios.get(`/api/math/${subcategory}`);
+    console.log("Fetch success:", res.data);
+    dispatch(fetchMathPromptSuccess(res.data, subcategory));
+  } catch (error) {
+    console.error("Fetch error:", error);
+    dispatch(fetchMathPromptFailure(error));
   }
 };
 
-export const putMathProblem = (problem) => async (dispatch) => {
-  try {
-    const res = await axios.put(`/api/math/${problem.id}`, problem);
-    dispatch(updateMathProblem(res.data));
-  } catch (err) {
-    console.error(err);
-  }
+// INITIAL STATE
+const initialState = {
+  problems: [],
+  prompts: {},
+  isLoading: false,
+  error: null,
 };
 
-export const destroyMathProblem = (id) => async (dispatch) => {
-  try {
-    await axios.delete(`/api/math/${id}`);
-    dispatch(deleteMathProblem(id));
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-4;
-export default function mathReducer(state = [], action) {
+// REDUCER
+export default function mathReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_MATH_PROBLEMS:
-      return action.mathProblems;
-    case ADD_MATH_PROBLEM:
-      return [...state, action.problem];
-    case UPDATE_MATH_PROBLEM:
-      return state.map((problem) =>
-        problem.id === action.problem.id ? action.problem : problem
-      );
-    case DELETE_MATH_PROBLEM:
-      return state.filter((problem) => problem.id !== action.id);
+    case FETCH_MATH_PROMPT_REQUEST:
+      console.log("Requesting math prompt...");
+      return { ...state, isLoading: true };
+    case FETCH_MATH_PROMPT_SUCCESS:
+      console.log("Math prompt success:", action);
+      return {
+        ...state,
+        isLoading: false,
+        prompts: { ...state.prompts, [action.subcategory]: action.prompt },
+        error: null,
+      };
+    case FETCH_MATH_PROMPT_FAILURE:
+      console.log("Math prompt failure:", action.error);
+      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }

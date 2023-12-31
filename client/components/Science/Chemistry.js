@@ -12,7 +12,6 @@ const chemistryQuestions = [
     ],
     answer: "Oxygen and Hydrogen",
   },
-  // ... additional questions
 ];
 
 const Chemistry = () => {
