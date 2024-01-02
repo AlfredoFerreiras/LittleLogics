@@ -18,8 +18,14 @@ const ScienceCategory = () => {
 
   const handleAnswerSelection = (answer) => {
     setSelectedAnswer(answer);
-    // Here you might handle the answer, check if it's correct, etc.
-    // This might involve another Redux action or just local state handling
+    if (answer === promptData.correctAnswer) {
+      // Fetch a new question if the answer is correct
+      dispatch(fetchSciencePrompt(subcategory));
+    }
+    // Add any additional logic for incorrect answers if needed
+    else {
+      alert("Incorrect, try again!");
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -29,13 +35,12 @@ const ScienceCategory = () => {
   return (
     <div className="science-category">
       <h2>{subcategory.charAt(0).toUpperCase() + subcategory.slice(1)}</h2>
-      <p>{promptData.prompt}</p>
+      <p>{promptData.question}</p>
       {promptData.options?.map((option, index) => (
         <button key={index} onClick={() => handleAnswerSelection(option)}>
           {option}
         </button>
       ))}
-      {selectedAnswer && <div>Selected Answer: {selectedAnswer}</div>}
     </div>
   );
 };

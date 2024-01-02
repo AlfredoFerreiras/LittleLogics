@@ -7,8 +7,12 @@ const openai = new OpenAI({
 
 const parseResponse = (text) => {
   const lines = text.split("\n");
+  console.log("lines:", lines);
   const question = lines[0]?.trim();
+  console.log("question:", question);
+
   const options = lines.slice(1, 6).map((line) => line.trim());
+  console.log("options:", options);
   // Assuming the correct answer is always marked with a special character like '*'
   const correctIndex = options.findIndex((option) => option.endsWith("*"));
 
@@ -28,7 +32,7 @@ const generatePrompt = async (category, subcategory) => {
   try {
     const systemMessage = {
       role: "system",
-      content: `I am a helpful assistant, well-versed in ${subcategory} within ${category}. I am here to provide information and answer questions for kids aged 4-9.`,
+      content: `I am a helpful assistant, well-versed in ${subcategory} within ${category}. I am here to provide information and answer questions for kids aged 4-9. Also please provide 4 different choices for the answer and mark the correct answer with a *. Also please don't say anything after you created the question. `,
     };
 
     const userMessage = {
@@ -38,7 +42,7 @@ const generatePrompt = async (category, subcategory) => {
 
     const response = await openai.chat.completions.create({
       model: "gpt-4",
-      messages: [userMessage, systemMessage],
+      messages: [systemMessage],
     });
 
     // Check if the response is structured as expected

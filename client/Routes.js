@@ -8,7 +8,7 @@ import MathCategory from "./components/Math/MathCategory"; // Unified Math compo
 import ScienceCategory from "./components/Science/ScienceCategory";
 import ScienceIndex from "./components/Science/Science"; // Unified Science component
 import VocabularyIndex from "./components/Vocabulary/Vocabulary";
-import BiologyQuestions from "./components/Science/Biology";
+
 import { me } from "./store";
 
 /**
