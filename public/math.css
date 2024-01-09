@@ -37,3 +37,22 @@
 .category-list a:hover {
     text-decoration: underline;
 }
+
+.math-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-section {
+    flex: 1;
+    padding-right: 20px;
+    /* Adjust as needed */
+}
+
+.exercise-section {
+    flex: 1;
+    padding-left: 20px;
+    /* Adjust as needed */
+}
+
+/* Additional styling for buttons, text, etc. */

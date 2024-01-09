@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../store";
+import { logout } from "../store/auth";
 
 const NestedDropdownMenu = ({ title, items }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);

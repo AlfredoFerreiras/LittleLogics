@@ -33,19 +33,6 @@ export const Home = ({ username }) => {
             {/* Insert a component that showcases a sample lesson or game */}
           </Col>
         </Row>
-
-        <Row className="enrollment-process text-center mb-5">
-          <Col>
-            <h2>Join Us</h2>
-            <p>
-              Sign up today and start exploring the world of knowledge with your
-              child.
-            </p>
-            <Button variant="primary" className="cta-button">
-              Sign Up
-            </Button>
-          </Col>
-        </Row>
       </Container>
 
       <footer className="home-footer text-center mt-5 p-3">
