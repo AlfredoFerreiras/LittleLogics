@@ -4,7 +4,7 @@ import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-
+import ttsReducer from "./tts";
 import auth from "./auth";
 import mathReducer from "./math";
 import scienceReducer from "./science";
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   auth,
   math: mathReducer,
   science: scienceReducer,
+  tts: ttsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { generateAdditionProblems } from "../Utilities/MathProblemsGenerator";
-import { Button } from "react-bootstrap";
-import { speak, getVoices } from "../Utilities/TextToSpeech";
-import MathLesson from "../Common/MathLesson";
+import NextTopic from "./NextTopic";
 import Exercise from "../Common/Exercise";
 import VoiceSelector from "../Utilities/VoiceSelector";
+import { fetchTTS } from "../../../store/tts";
+import { Button } from "react-bootstrap";
+import Navbar from "../../Navbar";
 
-const BasicAddition = ({ onNextTopic }) => {
+const BasicAddition = () => {
   const [problems, setProblems] = useState([]);
   const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
-  const [selectedVoice, setSelectedVoice] = useState(null);
+  const [selectedVoice, setSelectedVoice] = useState("");
+
+  const dispatch = useDispatch();
+  const audioUrl = useSelector((state) => state.tts.audioUrl);
 
   useEffect(() => {
-    // Fetch and set available voices for text-to-speech
-    getVoices().then((voices) => {
-      if (voices.length > 0) {
-        setSelectedVoice(voices[1].name); // Set the default voice to the first one in the list
-      }
-    });
+    if (audioUrl) {
+      const audio = new Audio(audioUrl);
+      audio.play().catch((e) => console.error("Error playing audio:", e));
+    }
+  }, [audioUrl]);
 
-    // Generate new problems and shuffle them
+  useEffect(() => {
+    const voices = [
+      { id: "voice1", name: "Voice 1" },
+      { id: "voice2", name: "Voice 2" },
+      // Add more voices as needed
+    ];
+    if (voices.length > 0) {
+      setSelectedVoice(voices[0].id);
+    }
+
     const newProblems = generateAdditionProblems(5, 10);
     setProblems(newProblems);
 
-    // Load the current problem index from local storage if it exists
     const savedIndex = localStorage.getItem("currentProblemIndex");
     if (savedIndex) {
       setCurrentProblemIndex(JSON.parse(savedIndex));
@@ -31,59 +43,64 @@ const BasicAddition = ({ onNextTopic }) => {
   }, []);
 
   useEffect(() => {
-    // Save the current problem index to local storage
     localStorage.setItem(
       "currentProblemIndex",
       JSON.stringify(currentProblemIndex)
     );
   }, [currentProblemIndex]);
 
+  useEffect(() => {
+    const newProblems = generateAdditionProblems(5, 10);
+    setProblems(newProblems);
+  }, []);
+
   const handleAnswerSubmit = (selectedAnswer) => {
     if (problems[currentProblemIndex].answer === selectedAnswer) {
       alert("Correct answer!");
-      setCurrentProblemIndex(currentProblemIndex + 1);
+      setCurrentProblemIndex((prevIndex) => (prevIndex + 1) % problems.length);
     } else {
       alert("Oops! Try again.");
     }
   };
+  const handleHearLesson = () => {
+    dispatch(fetchTTS(lessonContent.text, selectedVoice));
+  };
+
+  const handleMoreQuestions = () => {
+    setCurrentProblemIndex(Math.floor(Math.random() * problems.length));
+  };
 
   const currentProblem = problems[currentProblemIndex];
 
-  const handleNextTopic = () => {
-    onNextTopic();
-  };
-
-  // Render the component only if there are problems loaded
   if (problems.length === 0) return null;
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="col-span-1">
-          <MathLesson content={lessonContent.text} />
-          <VoiceSelector
-            onSelectVoice={(voice) => speak(lessonContent.text, voice)}
+    <div>
+      <Navbar />
+      <div className="basic-addition-container">
+        <div className="lesson-title">{lessonContent.title}</div>
+        <div className="lesson-content">{lessonContent.text}</div>
+        <VoiceSelector onSelectVoice={setSelectedVoice} />
+        <button className="cta-button" onClick={handleHearLesson}>
+          Hear the Lesson
+        </button>
+        <div className="exercise-section">
+          <Exercise
+            problem={currentProblem.problem}
+            options={currentProblem.options}
+            onAnswerSubmit={handleAnswerSubmit}
           />
-          <Button onClick={() => speak(lessonContent.text, selectedVoice)}>
-            Hear the Lesson
-          </Button>
-        </div>
-        <div className="col-span-1">
-          {currentProblemIndex < problems.length && (
-            <Exercise
-              problem={currentProblem.problem}
-              options={currentProblem.options}
-              onAnswerSubmit={handleAnswerSubmit}
-            />
-          )}
-          {currentProblemIndex >= problems.length && (
-            <div>
-              <Button onClick={handleNextTopic}>Next Topic</Button>
-              <Button onClick={() => setCurrentProblemIndex(0)}>
-                More Questions
-              </Button>
-            </div>
-          )}
+
+          {/* Next Topic section */}
+          <div className="next-topic-section">
+            <NextTopic />
+            <Button
+              variant="warning"
+              className="mt-2"
+              onClick={handleMoreQuestions}>
+              More Questions
+            </Button>
+          </div>
         </div>
       </div>
     </div>

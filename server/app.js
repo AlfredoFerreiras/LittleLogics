@@ -16,7 +16,8 @@ app.use(
         "'self'",
         "https://openlibrary.org",
         "https://api.openai.com/v1/chat/completions",
-      ], // Add this line
+        // ... other sources
+      ],
       scriptSrc: [
         "'self'",
         "'unsafe-inline'",
@@ -24,6 +25,8 @@ app.use(
         "https://js.stripe.com/v3",
         // ... other script sources
       ],
+      // Add mediaSrc directive to allow blob URLs
+      mediaSrc: ["'self'", "blob:"],
       // ... other directives
     },
   })

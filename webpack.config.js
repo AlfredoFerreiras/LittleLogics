@@ -1,75 +1,67 @@
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: ["./client/index.js"],
-  resolve: {
-    fallback: {
-      async_hooks: false,
-      path: require.resolve("path-browserify"),
-      stream: require.resolve("stream-browserify"),
-      util: require.resolve("util/"),
-      url: require.resolve("url/"),
-      buffer: require.resolve("buffer/"),
-      process: require.resolve("process/browser"),
-      crypto: require.resolve("crypto-browserify"),
-      fs: false,
-      http: require.resolve("stream-http"),
-      zlib: require.resolve("browserify-zlib"),
-      path: require.resolve("path-browserify"),
-      querystring: require.resolve("querystring-es3"),
-      assert: require.resolve("assert/"),
-      net: false,
-      os: require.resolve("os-browserify/browser"),
-      tls: require.resolve("tls-browserify"),
-      child_process: false,
-      "pg-store": false,
-      "node-gyp": false,
-      npm: false,
-      "aws-sdk": false, // Mock if not used
-      "mock-aws-s3": false, // Mock if not used
-      timers: require.resolve("timers-browserify"),
-      https: require.resolve("https-browserify"),
-    },
-  },
+  mode: "production",
+  entry: ["./client/index.js"], // Your entry point for the application
   output: {
-    path: __dirname,
-    filename: "./public/bundle.js",
+    path: path.resolve(__dirname, "public"), // Output directory for the bundled code
+    filename: "bundle.js", // Name of the bundled JavaScript file
+    publicPath: "/public/",
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-react"],
+        test: /\.jsx?$/, // Regex to match JavaScript and JSX files
+        exclude: /node_modules/, // Exclude the node_modules directory
+        use: {
+          loader: "babel-loader", // Use Babel to transpile JavaScript and JSX
+          options: {
+            presets: ["@babel/preset-react"], // Use the React preset for Babel
+          },
         },
       },
+      {
+        test: /\.css$/, // Regex to match CSS files
+        use: [
+          "style-loader", // Injects CSS into the DOM via a <style> tag
+          "css-loader", // Resolves CSS imports
+          {
+            loader: "postcss-loader", // Processes CSS with PostCSS
+            options: {
+              postcssOptions: {
+                ident: "postcss",
+                plugins: [
+                  require("tailwindcss"), // Include Tailwind CSS
+                  require("autoprefixer"), // Include Autoprefixer for vendor prefixes
+                ],
+              },
+            },
+          },
+        ],
+      },
+      // ... You can include additional rules for other file types (e.g., images, fonts)
     ],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      process: "process/browser",
-      Buffer: ["buffer", "Buffer"],
+    new webpack.DefinePlugin({
+      "process.env.SOCKET": JSON.stringify(process.env.SOCKET),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/,
-    }),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /nw-pre-gyp/,
-    }),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^sequelize|bcrypt$/,
-    }),
+    // ... You can include additional plugins as needed
   ],
-  devServer: {
-    contentBase: path.join(__dirname, "public"),
-    hot: true,
-    publicPath: "/",
-    historyApiFallback: true,
+  resolve: {
+    alias: {
+      buffer: "buffer", // Resolve the buffer module
+    },
+    fallback: {
+      path: require.resolve("path-browserify"), // Provide a browser version of the path module
+      fs: false, // Indicate that the fs module is not available in the browser
+      stream: require.resolve("stream-browserify"), // Provide a browser version of the stream module
+      util: require.resolve("util/"), // Provide a browser version of the util module
+    },
   },
+  stats: {
+    errorDetails: true, // Show details if there's an error during the build
+  },
+  devtool: "source-map", // Generate source maps for debugging
 };

@@ -1,32 +1,27 @@
-// server/api/tts.js
 const express = require("express");
-const axios = require("axios");
 const router = express.Router();
+const OpenAI = require("openai");
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const ELEVENLABS_API_URL = "https://api.elevenlabs.io";
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
+// Endpoint to synthesize speech
 router.post("/synthesize", async (req, res, next) => {
   try {
-    const { text, voiceId } = req.body;
-    const response = await axios.post(
-      `${ELEVENLABS_API_URL}/synthesize`,
-      {
-        text,
-        voiceId,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ELEVENLABS_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const { text } = req.body;
+    const response = await openai.audio.speech.create({
+      model: "tts-1",
+      voice: "alloy",
+      input: text,
+    });
 
-    // Respond with the URL to the audio file or the audio data itself
-    res.json(response.data);
+    console.log("Response:", req.body);
+
+    const buffer = Buffer.from(await response.arrayBuffer());
+    res.send(buffer); // You can also consider streaming the audio
   } catch (error) {
-    console.error("Error with ElevenLabs TTS:", error);
+    console.error("Error in TTS endpoint:", error);
     next(error);
   }
 });
