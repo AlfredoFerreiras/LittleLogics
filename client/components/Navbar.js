@@ -3,67 +3,65 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/auth";
 
-const NestedDropdownMenu = ({ title, items }) => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+const SubMenu = ({ items }) => {
   const [subMenuVisibility, setSubMenuVisibility] = useState({});
 
-  // Toggle dropdown visibility
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
-
-  // Toggle submenu visibility
   const toggleSubMenu = (index) => {
-    setSubMenuVisibility((prev) => ({ ...prev, [index]: !prev[index] }));
+    setSubMenuVisibility((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   return (
+    <div className="dropdown-submenu-content">
+      {items.map((item, index) => (
+        <div key={index} className="dropdown-submenu">
+          <button
+            className="dropbtn"
+            onClick={() => toggleSubMenu(index)}
+            type="button">
+            {item.label}
+          </button>
+          <div
+            className={`dropdown-content ${
+              subMenuVisibility[index] ? "show" : ""
+            }`}>
+            {item.items
+              ? item.items.map((subItem, subIndex) => (
+                  <NavLink
+                    key={subIndex}
+                    to={subItem.path}
+                    activeClassName="active-dropdown-item">
+                    {subItem.label}
+                  </NavLink>
+                ))
+              : null}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const NestedDropdownMenu = ({ title, items }) => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  return (
     <div className="dropdown">
-      <button className="dropbtn" onClick={toggleDropdown}>
+      <button
+        className="dropbtn"
+        onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+        type="button">
         {title}
       </button>
       <div className={`dropdown-content ${isDropdownVisible ? "show" : ""}`}>
-        {items?.map((item, index) => {
-          if (item.items && item.items.length) {
-            // Render a nested dropdown menu
-            return (
-              <div key={index} className="dropdown-submenu">
-                <button
-                  className="dropbtn"
-                  onClick={() => toggleSubMenu(index)}>
-                  {item.label}
-                </button>
-                <div
-                  className={`dropdown-content ${
-                    subMenuVisibility[index] ? "show" : ""
-                  }`}>
-                  {item.items.map((subItem, subIndex) => (
-                    <NavLink
-                      key={subIndex}
-                      to={subItem.path}
-                      activeClassName="active-dropdown-item">
-                      {subItem.label}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            );
-          } else {
-            // Render a regular dropdown item
-            return (
-              <NavLink
-                key={index}
-                to={item.path}
-                activeClassName="active-dropdown-item">
-                {item.label}
-              </NavLink>
-            );
-          }
-        })}
+        <SubMenu items={items} />
       </div>
     </div>
   );
 };
+
 const Navbar = ({ handleClick, isLoggedIn }) => {
   // Define the dropdown items for Math and Science
   const scienceItems = [

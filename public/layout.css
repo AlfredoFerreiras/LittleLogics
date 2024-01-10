@@ -1,0 +1,53 @@
+/* Navbar Styles */
+
+/* Auth Form Styles */
+.auth-form {
+    background-color: #f3f4f6;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styling */
+.home-content .hero-section,
+.home-content .features-section,
+.home-content .about-academy,
+.home-content .sample-lessons,
+.home-content .enrollment-process {
+    padding: 50px 0;
+}
+
+.hero-section {
+    background-color: white;
+    background-size: cover;
+    position: relative;
+    padding: 50px 0;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Layout for Math Section */
+.math-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-section {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.exercise-section {
+    flex: 1;
+    padding-left: 20px;
+}
+
+/* Footer Styling */
+.home-footer {
+    background-color: #f8f8f8;
+    color: #5d5d5d;
+}

@@ -1,0 +1,66 @@
+.home-content {
+    /* Additional styles if needed */
+}
+
+.hero-section {
+    padding: 50px 0;
+    background-color: white;
+    /* or any other color */
+    text-align: center;
+}
+
+.hero-text h1 {
+    color: #000;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.5s;
+}
+
+.about-academy {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-academy h2 {
+    color: #333;
+    /* Or any color of your choice */
+    margin-bottom: 10px;
+}
+
+.about-academy p {
+    color: #666;
+    /* Or any color of your choice */
+}
+
+.sample-lessons {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sample-lessons h2 {
+    color: #333;
+    /* Or any color of your choice */
+    margin-bottom: 10px;
+}
+
+.home-footer {
+    background-color: #f8f8f8;
+    /* Or any color of your choice */
+    color: #5d5d5d;
+    padding: 20px 0;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}

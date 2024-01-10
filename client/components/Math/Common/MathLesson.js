@@ -4,9 +4,11 @@ import { speak } from "../Utilities/TextToSpeech"; // Assuming this utility init
 
 const MathLesson = ({ content }) => {
   return (
-    <div>
-      <p>{content}</p>
-      <button onClick={() => speak(content)}>Listen</button>
+    <div className="math-lesson-container">
+      <p className="lesson-content">{content}</p>
+      <button className="listen-button" onClick={() => speak(content)}>
+        Listen
+      </button>
       {/* Include navigation or "Next" buttons if needed */}
     </div>
   );

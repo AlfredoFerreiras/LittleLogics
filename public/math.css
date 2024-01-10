@@ -63,10 +63,66 @@
 }
 
 /* Shared style for lesson content */
-.lesson-content {
-    font-size: 1rem;
-    color: #555;
-    text-align: center;
+/* Exercise.css */
+.exercise-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #e7f5ff;
+    /* Light blue background */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Dropdown Styles */
+.problem-statement {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.option-button {
+    background-color: #94d2bd;
+    /* Soft green */
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-button:hover {
+    background-color: #82c9a3;
+    /* Slightly darker green on hover */
+}
+
+/* MathLesson.css */
+.math-lesson-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffddd2;
+    /* Soft red background */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-content {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.listen-button {
+    background-color: #fecaca;
+    /* Soft pink */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.listen-button:hover {
+    background-color: #f9a8a8;
+    /* Slightly darker pink on hover */
+}

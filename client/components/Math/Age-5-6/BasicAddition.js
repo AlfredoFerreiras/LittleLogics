@@ -7,6 +7,7 @@ import VoiceSelector from "../Utilities/VoiceSelector";
 import { fetchTTS } from "../../../store/tts";
 import { Button } from "react-bootstrap";
 import Navbar from "../../Navbar";
+import MathLesson from "../Common/MathLesson";
 
 const BasicAddition = () => {
   const [problems, setProblems] = useState([]);
@@ -94,15 +95,13 @@ const BasicAddition = () => {
           {/* Next Topic section */}
           <div className="next-topic-section">
             <NextTopic />
-            <Button
-              variant="warning"
-              className="mt-2"
-              onClick={handleMoreQuestions}>
+            <Button variant="warning" onClick={handleMoreQuestions}>
               More Questions
             </Button>
           </div>
         </div>
       </div>
+      <MathLesson content={lessonContent.text} />
     </div>
   );
 };

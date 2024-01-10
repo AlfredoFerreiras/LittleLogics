@@ -1,0 +1,38 @@
+/* CTA Button Styles */
+.cta-button {
+    background-color: #ff4500;
+    border-color: #ff4500;
+    color: white;
+}
+
+.cta-button:hover,
+.cta-button:active {
+    background-color: #e63900;
+    border-color: #e63900;
+}
+
+/* Additional Footer Styling */
+.home-footer {
+    background-color: #f8f8f8;
+    color: #5d5d5d;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.popular-searches span {
+    color: #ff4500;
+    cursor: pointer;
+}
+
+/* Bootstrap Button Styles */
+.btn-primary {
+    background-color: #ff4500;
+    border-color: #ff4500;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #e63900;
+    border-color: #e63900;
+}

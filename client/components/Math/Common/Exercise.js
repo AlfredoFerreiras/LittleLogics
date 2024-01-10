@@ -3,10 +3,13 @@ import React from "react";
 
 const Exercise = ({ problem, options, onAnswerSubmit }) => {
   return (
-    <div>
-      <div>{problem}</div>
+    <div className="exercise-container">
+      <div className="problem-statement">{problem}</div>
       {options?.map((option, index) => (
-        <button key={index} onClick={() => onAnswerSubmit(option)}>
+        <button
+          key={index}
+          className="option-button"
+          onClick={() => onAnswerSubmit(option)}>
           {option}
         </button>
       ))}

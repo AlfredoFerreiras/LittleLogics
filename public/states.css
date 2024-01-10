@@ -1,0 +1,25 @@
+.active-nav-link {
+    color: #ff4500;
+}
+
+.show {
+    display: block;
+}
+
+.active-dropdown-item {
+    color: #ff4500;
+}
+
+/* State-based Styles */
+.not-logged-in .navbar {
+    background-color: #e74c3c;
+}
+
+.not-logged-in .nav-link,
+.not-logged-in .dropdown-content a {
+    color: #ecf0f1;
+}
+
+.not-logged-in .dropbtn {
+    background-color: #c0392b;
+}
