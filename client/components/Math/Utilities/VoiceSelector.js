@@ -1,32 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const VoiceSelector = ({ onSelectVoice }) => {
-  const voices = [
-    { id: "alloy", name: "Alloy" },
-    { id: "echo", name: "Echo" },
-    { id: "fable", name: "Fable" },
-    { id: "onyx", name: "Onyx" },
-    { id: "nova", name: "Nova" },
-    { id: "shimmer", name: "Shimmer" },
-    // Include only the valid voices provided by OpenAI
-  ];
+const VoiceSelector = ({ onSelectVoice, initialVoice }) => {
+  const [voices, setVoices] = useState([]);
+  const [selectedVoiceId, setSelectedVoiceId] = useState(initialVoice || "");
 
-  const [selectedVoiceId, setSelectedVoiceId] = useState(voices[0].id);
+  useEffect(() => {
+    onSelectVoice(selectedVoiceId);
+  }, [selectedVoiceId, onSelectVoice]);
 
   const handleVoiceChange = (event) => {
-    const voiceId = event.target.value;
-    setSelectedVoiceId(voiceId);
-    onSelectVoice(voiceId);
+    setSelectedVoiceId(event.target.value);
   };
 
   return (
-    <select value={selectedVoiceId} onChange={handleVoiceChange}>
-      {voices.map((voice) => (
-        <option key={voice.id} value={voice.id}>
-          {voice.name}
-        </option>
-      ))}
-    </select>
+    <div>
+      <label htmlFor="voice-selector">Choose a Voice:</label>
+      <select
+        id="voice-selector"
+        value={selectedVoiceId}
+        onChange={handleVoiceChange}>
+        {voices.map((voice) => (
+          <option key={voice.id} value={voice.id}>
+            {voice.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

@@ -1,0 +1,112 @@
+/* CoursesComponent.css */
+
+.course-category-title {
+    color: #ff4500;
+    /* Using the orange color theme */
+    margin-bottom: 20px;
+}
+
+.course-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-card-body {
+    padding: 15px;
+    background-color: #ffffff;
+    /* You might want to choose a color fitting your theme */
+    border-radius: 4px;
+}
+
+.course-card-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.course-card-text {
+    color: #666;
+}
+
+.course-link {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+.course-link:hover {
+    color: #e63900;
+    text-decoration: none;
+    /* Assuming you don't want underlines on hover */
+}
+
+/* CoursesComponent.css */
+
+.course-category-title {
+    color: #ff4500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    user-select: none;
+    /* Prevent text selection on double click */
+}
+
+.category-container {
+    margin-bottom: 30px;
+}
+
+.course-card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.course-card-body {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.course-card-title {
+    color: #333;
+    font-weight: bold;
+}
+
+.course-card-text {
+    color: #666;
+}
+
+.course-link {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+.course-link:hover {
+    color: #e63900;
+    text-decoration: none;
+}
+
+/* Swiper overrides and additional styles */
+.swiper {
+    padding: 20px 0;
+}
+
+.course-category-swiper {
+    overflow: hidden;
+}
+
+.course-swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Add any additional styles you need here */

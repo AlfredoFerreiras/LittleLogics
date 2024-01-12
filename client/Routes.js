@@ -4,6 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import BasicAddition from "./components/Math/Age-5-6/BasicAddition";
+import CourseComponent from "./components/Courses";
 
 import { me } from "./store/auth";
 
@@ -29,6 +30,7 @@ class Routes extends Component {
               path="/math/age-5-6/basic-addition"
               component={BasicAddition}
             />
+            <Route path="/courses" component={CourseComponent} />
             <Route exact path="/home" component={Home} />
             <Redirect to="/home" />
           </Switch>

@@ -15,6 +15,18 @@
     /* Smooth transform transition */
 }
 
+.voice-selector-container,
+.math-lesson-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #e7f5ff;
+    /* Example: light blue background, similar to exercise-section */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
 
 /* styles.css */
 
