@@ -1,52 +1,54 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Navbar from "./Navbar";
 
 // install Swiper modules
 
 const Course = ({ course }) => (
-  <Card className="course-card">
-    <Card.Body className="course-card-body">
-      <Card.Title className="course-card-title">{course.label}</Card.Title>
-      <Card.Text as="div">
-        Go to{" "}
-        <a href={course.path} className="course-link">
-          {course.label}
-        </a>
-      </Card.Text>
-    </Card.Body>
-  </Card>
+  <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
+    <Card className="course-card">
+      <Card.Body className="course-card-body">
+        <Card.Title className="course-card-title">{course.label}</Card.Title>
+        <Card.Text as="div">
+          Go to{" "}
+          <a href={course.path} className="course-link">
+            {course.label}
+          </a>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  </Col>
 );
 const CourseCategory = ({ category, isOpen, onClick }) => (
-  <div className="category-container">
-    <h3 className="course-category-title" onClick={onClick}>
-      {category.label}
-    </h3>
-    {isOpen && (
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={"auto"}
-        freeMode={true}
-        className="course-category-swiper">
-        {category.items.map((course, index) => (
-          <SwiperSlide key={index} className="course-swiper-slide">
-            <Course course={course} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    )}
-  </div>
+  <Card className="category-card mb-4">
+    <Card.Body>
+      <Card.Title className="course-category-title" onClick={onClick}>
+        {category.label}
+      </Card.Title>
+      {isOpen && (
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={"auto"}
+          freeMode={true}
+          className="course-category-swiper">
+          <Row noGutters>
+            {category.items.map((course, index) => (
+              <SwiperSlide key={index}>
+                <Course course={course} />
+              </SwiperSlide>
+            ))}
+          </Row>
+        </Swiper>
+      )}
+    </Card.Body>
+  </Card>
 );
 const CoursesList = ({ courses }) => {
   const [openCategory, setOpenCategory] = useState(null);
 
   const handleCategoryClick = (label) => {
-    if (openCategory === label) {
-      setOpenCategory(null); // Close the category if it's already open
-    } else {
-      setOpenCategory(label); // Open the clicked category
-    }
+    setOpenCategory(openCategory === label ? null : label);
   };
 
   return (
@@ -138,7 +140,10 @@ const CourseComponent = () => {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-center">
+          <h1 className="text-4xl text-red-500 font-bold">Courses</h1>
+        </div>
         <h2>Science Courses</h2>
         <CoursesList courses={scienceItems} />
         <h2>Math Courses</h2>

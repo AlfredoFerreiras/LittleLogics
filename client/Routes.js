@@ -5,7 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import BasicAddition from "./components/Math/Age-5-6/BasicAddition";
 import CourseComponent from "./components/Courses";
-
+import Profile from "./components/Profile";
 import { me } from "./store/auth";
 
 /**
@@ -30,6 +30,7 @@ class Routes extends Component {
               path="/math/age-5-6/basic-addition"
               component={BasicAddition}
             />
+            <Route path="/profile" component={Profile} />
             <Route path="/courses" component={CourseComponent} />
             <Route exact path="/home" component={Home} />
             <Redirect to="/home" />

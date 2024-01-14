@@ -1,4 +1,7 @@
 /* BasicAddition.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .basic-addition-container {
     display: flex;

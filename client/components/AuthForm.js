@@ -1,43 +1,51 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store/auth";
-import ParticlesBg from "particles-bg";
+import { Link } from "react-router-dom";
 
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
+  const handleSignUpBtn = () => {
+    <Link to="/signup" />;
+  };
+
   return (
-    <div className="auth-form">
-      <ParticlesBg type="cobweb" bg={true} />
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
+    <div className="auth-form-container">
+      <form onSubmit={handleSubmit} name={name} className="auth-form">
+        <div className="form-field">
+          <label htmlFor="username" className="form-label">
             <small>Username</small>
           </label>
-          <input name="username" type="text" />
+          <input name="username" type="text" className="form-input" />
         </div>
-        <div>
-          <label htmlFor="password">
+        <div className="form-field">
+          <label htmlFor="password" className="form-label">
             <small>Password</small>
           </label>
-          <input name="password" type="password" />
+          <input name="password" type="password" className="form-input" />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+        <div className="form-field">
+          <button type="submit" className="submit-button">
+            {displayName}
+          </button>
+          <div className="text-center">
+            <p>
+              Not a member?
+              <Link to="/signup" className="registerbtn">
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
+
+        {error && error.response && (
+          <div className="error-message"> {error.response.data} </div>
+        )}
       </form>
     </div>
   );
 };
-
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = (state) => {
   return {
     name: "login",

@@ -1,4 +1,7 @@
 /* Navbar Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Auth Form Styles */
 .auth-form {

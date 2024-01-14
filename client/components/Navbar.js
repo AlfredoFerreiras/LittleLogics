@@ -15,11 +15,14 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
         <NavLink to="/home" activeClassName="nav-link" className="nav-item">
           Home
         </NavLink>
+
+        {/* Add more nav items if needed */}
+      </nav>
+      <div className="navbar-nav">
         <NavLink to="/courses" activeClassName="nav-link" className="nav-item">
           Courses
         </NavLink>
-        {/* Add more nav items if needed */}
-      </nav>
+      </div>
       <div className="navbar-actions">
         {isLoggedIn ? (
           <>
