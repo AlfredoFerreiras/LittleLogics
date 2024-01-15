@@ -8,6 +8,28 @@
     /* Adjust to match your app's theme */
 }
 
+@keyframes rainbow-text {
+    0% {
+        color: rgb(255, 0, 0);
+    }
+
+    /* Red */
+    15% {
+        color: rgb(255, 127, 0);
+    }
+
+    /* Violet */
+    100% {
+        color: rgb(255, 0, 0);
+    }
+
+    /* Red */
+}
+
+#colorful-heading {
+    animation: rainbow-text 10s linear infinite;
+}
+
 .auth-form {
     max-width: 400px;
     margin: auto;
@@ -112,4 +134,8 @@ box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.2); / Slight glow effect */
     /* set the color to blue on hover */
     cursor: pointer;
     /* change cursor to pointer on hover (optional) */
+}
+
+.auth-form-container {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
 }

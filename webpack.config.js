@@ -21,6 +21,7 @@ module.exports = {
           },
         },
       },
+
       {
         test: /\.css$/, // Regex to match CSS files
         use: [
@@ -39,7 +40,10 @@ module.exports = {
           },
         ],
       },
-      // Additional rules for other file types (e.g., images, fonts) can be added here
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Regex to match image files
+        type: "asset/resource", // Instruct webpack to emit the asset to the output directory
+      },
     ],
   },
   plugins: [
