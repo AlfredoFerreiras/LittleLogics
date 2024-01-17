@@ -9,11 +9,6 @@
   padding: 1;
 }
 
-.registerbtn {
-
-  color: gray
-}
-
 body {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-size: 16px;
@@ -30,4 +25,30 @@ a {
   to {
     opacity: 1;
   }
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right,
+      rgba(255, 0, 0, 1),
+      /* Red */
+      rgba(255, 127, 0, 1),
+      /* Orange */
+      rgba(255, 255, 0, 1)
+      /* Yellow */
+    );
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-image: linear-gradient(to right,
+      rgba(255, 0, 0, 0.8),
+      /* Red */
+      rgba(255, 127, 0, 0.8),
+      /* Orange */
+      rgba(255, 255, 0, 0.8)
+      /* Yellow */
+    );
+  border: none;
 }

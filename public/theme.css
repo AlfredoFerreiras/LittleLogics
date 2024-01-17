@@ -4,15 +4,29 @@
 
 /* CTA Button Styles */
 .cta-button {
-    background-color: #ff4500;
-    border-color: #ff4500;
+    background-image: linear-gradient(to right,
+            rgba(255, 0, 0, 1),
+            /* Red */
+            rgba(255, 127, 0, 1),
+            /* Orange */
+            rgba(255, 255, 0, 1)
+            /* Yellow */
+        );
+    border: none;
     color: white;
 }
 
 .cta-button:hover,
 .cta-button:active {
-    background-color: #e63900;
-    border-color: #e63900;
+    background-image: linear-gradient(to right,
+            rgba(255, 0, 0, 0.8),
+            /* Red */
+            rgba(255, 127, 0, 0.8),
+            /* Orange */
+            rgba(255, 255, 0, 0.8)
+            /* Yellow */
+        );
+    border: none;
 }
 
 /* Additional Footer Styling */

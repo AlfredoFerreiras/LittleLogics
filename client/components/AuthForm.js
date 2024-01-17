@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store/auth";
 import { Link } from "react-router-dom";
+import LittleLogicsLogoNavBar from "../../public/images/LittleLogicsLogoNavBar.png";
 
 const AuthForm = (props) => {
   4;
@@ -10,12 +11,14 @@ const AuthForm = (props) => {
   return (
     <div className="auth-container">
       <div className="auth-form-container">
+        <div className="logo-container"></div>
+
         <form onSubmit={handleSubmit} name={name} className="auth-form">
-          <h3
-            style={{ animation: getColorfulStyle.animation }}
-            id="colorful-heading">
-            Welcome To LittleLogics
-          </h3>
+          <img
+            src="/images/LittleLogicsLogoNavBar.png"
+            alt="LittleLogics Logo"
+            className="auth-logo"
+          />
           <div className="form-field">
             <label htmlFor="username" className="form-label">
               <small>Username</small>

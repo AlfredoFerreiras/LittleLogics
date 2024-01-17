@@ -2,16 +2,23 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/auth";
+import SearchBar from "./SearchBar";
 
 const Navbar = ({ handleClick, isLoggedIn }) => {
   return (
     <header className="navbar">
       <div className="navbar-logo-container">
-        <NavLink to="/" exact className="navbar-logo">
-          LittleLogics
+        <NavLink to="/" exact className="navbar-logo-link">
+          <img
+            src="/images/LittleLogicsLogoNavBar.png"
+            alt="LittleLogics Logo"
+            className="navbar-logo"
+          />
+          <span>LittleLogics</span>
         </NavLink>
       </div>
       <nav className="navbar-nav">
+        <SearchBar />
         <NavLink to="/home" activeClassName="nav-link" className="nav-item">
           Home
         </NavLink>

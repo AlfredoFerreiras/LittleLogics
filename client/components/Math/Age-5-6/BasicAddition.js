@@ -28,12 +28,12 @@ const BasicAddition = () => {
   const handleAnswerSubmit = useCallback(
     (selectedAnswer) => {
       if (problems[currentProblemIndex].answer === selectedAnswer) {
-        setFeedbackMessage("Correct answer!");
+        setFeedbackMessage("Yay! You Got it!");
         setCurrentProblemIndex(
           (prevIndex) => (prevIndex + 1) % problems.length
         );
       } else {
-        setFeedbackMessage("Oops! Try again.");
+        setFeedbackMessage("Oops! Try again");
       }
     },
     [currentProblemIndex, problems]
